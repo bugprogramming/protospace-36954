@@ -2,14 +2,15 @@
   <div class="inner">
     <div class="prototype__wrapper">
       <p class="prototype__hedding">
-        <%= "プロトタイプのタイトル"%>
+        <%= @prototype.title%>
       </p>
       <%= link_to @prototype.user.name, user_path(@prototype.user), class: :prototype__user %>
       <%# プロトタイプの投稿者とログインしているユーザーが同じであれば以下を表示する %>
         <div class="prototype__manage">
+        <% if user_signed_in? %>
           <%= link_to "編集する", edit_prototype_path(@prototype), class: :prototype__btn %>
           <%= link_to "削除する",  prototype_path(@prototype), class: :prototype__btn,method: :delete%>
-          
+        <%end%>
         </div>
       <%# // プロトタイプの投稿者とログインしているユーザーが同じであれば上記を表示する %>
       <div class="prototype__image">
@@ -19,13 +20,13 @@
         <div class="prototype__detail">
           <p class="detail__title">キャッチコピー</p>
           <p class="detail__message">
-            <%= "プロトタイプのキャッチコピー" %>
+            <%= @prototype.catch_copy %>
           </p>
         </div>
         <div class="prototype__detail">
           <p class="detail__title">コンセプト</p>
           <p class="detail__message">
-            <%= "プロトタイプのコンセプト" %>
+            <%=  @prototype.concept %>
           </p>
         </div>
       </div>
